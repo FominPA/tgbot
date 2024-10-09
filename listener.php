@@ -7,9 +7,17 @@
 	class Listener {
 		//$url = 'https://api.telegram.org/bot'. TG_TOKEN .'/getupdates';
 		//$return = file_get_contents($url);
+		public $last_update_id;
 
 		function __construct (public $SQlUser) {
-			$this->last_update_id = $this->load_last_update_id();	
+			$this->last_update_id = $this->load_last_update_id();
+			for ( ;  ; ) { 
+				$update = file_get_contents('https://api.telegram.org/bot'. TG_TOKEN .'/getupdates');
+				if ($update->ok) {
+					
+				}
+			})
+
 		}
 
 		function on() {
@@ -32,7 +40,7 @@
 
 	function create_update_id_log($SQLUser) {
 		$SQLUser->pdo->query('CREATE TABLE `update_id_log`(
-				`update_id_log` INT,
+				`update_id` INT,
 				`date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 			);');
 	}

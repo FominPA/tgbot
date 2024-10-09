@@ -36,14 +36,5 @@
 		function check_update_id() {
 
 		}
-	} 
-
-	function create_update_id_log($SQLUser) {
-		$SQLUser->pdo->query('CREATE TABLE `update_id_log`(
-				`update_id` INT,
-				`date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-			);');
 	}
-
-	create_update_id_log($SQLLoader);
 ?>

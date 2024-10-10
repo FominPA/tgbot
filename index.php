@@ -7,7 +7,7 @@
 </head>
 <body>
 <?php 
-	include_once 'listener.php';
+	include_once 'sendarticle.php';
 ?>
 </body>
 </html>

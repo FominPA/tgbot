@@ -7,7 +7,7 @@
 </head>
 <body>
 <?php 
-	include_once 'sendarticle.php';
+	include_once 'button.php';
 ?>
 </body>
 </html>

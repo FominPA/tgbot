@@ -9,6 +9,7 @@
 <?php 
 	include_once 'listener.php';
 	echo("<meta http-equiv='refresh' content='1'>");
+	// include_once 'script.php';
 ?>
 </body>
 </html>

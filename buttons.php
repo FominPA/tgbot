@@ -29,9 +29,9 @@
     );
 
 	class SendMarkup {
-		function __construct (private $Markup) {
+		function __construct (private $UserID, private $Markup) {
 			file_get_contents(
-				BASE_URL .  'sendMessage?chat_id=' . MY_ID . 
+				BASE_URL .  'sendMessage?chat_id=' . $this->UserID . 
 				'&text=keyboard sended' . 
 				'&reply_markup=' . json_encode($this->Markup)
 			);
@@ -39,5 +39,5 @@
 	} 
 	
 	
-    $SendOn = new SendMarkup(new RemoveKeyboard());
+    // $SendOn = new SendMarkup(new RemoveKeyboard());
 ?>

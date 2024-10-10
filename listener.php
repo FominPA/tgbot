@@ -51,6 +51,6 @@
 			}
 		}
 
-	} $listenerObj = new Listener($begetSQL);
+	} $listenerObj = new Listener($localhostSQL);
 
 ?>

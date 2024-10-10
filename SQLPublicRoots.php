@@ -7,7 +7,7 @@
 			$SQLLoaderUser = new PDOUser('localhost', 'k97732pj_general', 'k97732pj_general', 'S24072808ww');
 			$this->pdo = $SQLLoaderUser->pdo;
 		}
-	} $SQLLoader = new SQLLoader();
+	} $localhostSQL = new SQLLoader();
 
 	// Временно закину модел сейвер пока нет авторизации
 
@@ -17,5 +17,5 @@
 			$SQLSaverUser = new PDOUser('localhost', 'k97732pj_general', 'k97732pj_general', 'S24072808ww');
 			$this->pdo = $SQLSaverUser->pdo;
 		}
-	} $SQLModelSaver = new SQLModelSaver();
+	} $begetSQL = new SQLModelSaver();
 ?>

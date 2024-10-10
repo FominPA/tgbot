@@ -1,9 +1,7 @@
 <?php
-	define('TG_TOKEN', '7505622461:AAH8y1PWhOWNpkLab7BL9wuBxuBDvvE5Toc');
-	define('MY_ID', '1852081635');
+	include_once 'BotSettings.php';
 
-	$url = 'https://api.telegram.org/bot'. TG_TOKEN .'/';
 	//header('Location: ' . $url);
-	$return = file_get_contents($url . 'getMe');
+	$return = file_get_contents(BASE_URL . 'getMe');
 	print_r($return);
 ?>

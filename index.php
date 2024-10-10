@@ -8,6 +8,7 @@
 <body>
 <?php 
 	include_once 'buttons.php';
+	echo 'finished';
 ?>
 </body>
 </html>

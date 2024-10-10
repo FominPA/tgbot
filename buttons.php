@@ -36,8 +36,5 @@
 				'&reply_markup=' . json_encode($this->Markup)
 			);
 		}
-	} 
-	
-	
-    // $SendOn = new SendMarkup(new RemoveKeyboard());
+	}
 ?>

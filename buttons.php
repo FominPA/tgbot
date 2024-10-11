@@ -15,18 +15,26 @@
 
 		function __construct (private $matrix) {
 			$this->keyboard = $this->matrix;
-			$this->resize_keyboard = true;
 		}
-		
 	}
 
-    $ReplyKeyboardMarkup = new KeyboardMarkup(
-        [
-            [new KeyboardButton('Левая Верхняя'), new KeyboardButton('Правая Верхняя')],
-            [new KeyboardButton('Левая'), new KeyboardButton('Правая')],
-            [new KeyboardButton('Левая Нижняя'), new KeyboardButton('Правая Нижняя')]
-        ]
-    );
+	class CallBackData {
+		function __construct (public $data) {}
+	}
+
+	class InlineKeyboard {
+		function __construct (public $text, public $callback_data) {
+			$this->callback_data = json_encode($this->callback_data);
+		}
+	}
+
+	class InlineKeyboardMarkup {
+		public $inline_keyboard;
+
+		function __construct (private $matrix) {
+			$this->inline_keyboard = $this->matrix;
+		}
+	}
 
 	class SendMarkup {
 		function __construct (private $UserID, private $Markup) {

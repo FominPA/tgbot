@@ -9,6 +9,14 @@
 <?php 
 	include_once 'listener.php';
 	echo("<meta http-equiv='refresh' content='1'>");
+	// {
+	// 	$GeneralKeyboard= new KeyboardMarkup([
+	// 			[new KeyboardButton('Каталог')],
+	// 			[new KeyboardButton('Контакт продавца')],
+	// 			[new KeyboardButton('Закрыть клавиатуру')]
+	// 		]);
+	// 		$SendOn = new SendMarkup('475519535', $GeneralKeyboard);
+	// }
 ?>
 </body>
 </html>

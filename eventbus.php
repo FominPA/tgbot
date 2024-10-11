@@ -1,40 +1,40 @@
 <?php
 	include_once 'botsettings.php';
 	include_once 'buttons.php';
+	include_once 'ConcreteArticle.php';
 
 	class EventBus {
 		function __construct (private $Query) {
-			$UserID = $this->Query->message->from->id;
-			echo 'UserID: ' . $UserID . '<br>';
-			echo 'Text: ' . $this->Query->message->text . '<br>';
 
-			switch ($this->Query->message->text) {
-				case '/start':
-					$this->open_general_menu($UserID);
-				break;
+			if (!is_null($this->Query->message)) {
+				switch ($this->Query->message->text) {
+					case '/start':
+						$this->open_general_menu($this->Query->message->from->id);
+					break;
 
-				case 'Каталог':
-					$this->send_catalog($UserID);
-				break;
+					case 'Каталог':
+						$LifePo4 = new LifePo4GeneralArticle($this->Query->message->from->id); $LifePo4->send();
+					break;
 
-				case 'Связаться с менеджером':
-					file_get_contents(BASE_URL . 'sendcontact?chat_id=' . $UserID . '&first_name=Никита&last_name=Гифрин&phone_number=79257393984');
-				break;
+					case 'Контакт продавца':
+						file_get_contents(BASE_URL . 'sendcontact?chat_id=' . $this->Query->message->from->id . '&first_name=Никита&last_name=Гифрин&phone_number=79257393984');
+					break;
 
-				case 'Закрыть клавиатуру':
-					$this->close_keyboard($UserID);
-				break;
-				
-				default:
-					echo 'pass';
-				break;
+					case 'Закрыть клавиатуру':
+						$this->close_keyboard($this->Query->message->from->id);
+					break;
+					
+					default:
+						echo 'pass';
+					break;
+				};
 			}
 		}
 
 		function open_general_menu($UserID) {
 			$GeneralKeyboard= new KeyboardMarkup([
 				[new KeyboardButton('Каталог')],
-				[new KeyboardButton('Связаться с менеджером')],
+				[new KeyboardButton('Контакт продавца')],
 				[new KeyboardButton('Закрыть клавиатуру')]
 			]);
 			$SendOn = new SendMarkup($UserID, $GeneralKeyboard);

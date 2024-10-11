@@ -15,7 +15,7 @@
 			$last_el = count($update->result) - 1;
 
 			if ($update->ok) {
-				if ($update->result[$last_el] !== null && $update->result[$last_el]->update_id != $this->last_update_id ) {
+				if ($update->result[$last_el] !== null && $update->result[$last_el]->update_id > $this->last_update_id ) {
 					file_get_contents(BASE_URL . 'sendmessage?chat_id=' . MY_ID . '&text=new%20update%20id%20' . $update->result[$last_el]->update_id);
 					
 					$this->last_update_id = $update->result[$last_el]->update_id;

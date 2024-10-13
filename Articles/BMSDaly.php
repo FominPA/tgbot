@@ -87,7 +87,7 @@
 		function general($Query) {
 			$text = urlencode(
 				<<< END
-				<b>⚡️⚡️⚡️ Плaтa BMS Daly ⚡️⚡️⚡️</b>
+				<b>⚡️⚡️⚡️⚡️ Плaтa BMS Daly ⚡️⚡️⚡️⚡️</b>
 
 				Плaты ВМS для LiFeРO4 аккумуляторoв 12, 24, 36, 48, 60 В (4S, 8S, 12S, 16S, 20S) 
 				нa тoки oт 20 до 250 A

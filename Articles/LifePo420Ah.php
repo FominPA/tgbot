@@ -53,8 +53,6 @@
 			$markup = '&reply_markup=' . json_encode( 
 					new InlineKeyboardMarkup([
 						[ new InlineKeyboard('Подробнее', $this->edit_query . $this->ucode . 'feature') ],
-						[ new InlineKeyboard('Технические Характеристики', $this->edit_query . $this->ucode . 'spec') ],
-						[ new InlineKeyboard('Задать вопрос по товару', $this->edit_query . $this->ucode . 'callmanager') ],
 					])
 				);
 
@@ -78,8 +76,6 @@
 			$markup = '&reply_markup=' . json_encode( 
 					new InlineKeyboardMarkup([
 						[ new InlineKeyboard('Подробнее', $this->edit_query . $this->ucode . 'feature') ],
-						[ new InlineKeyboard('Технические Характеристики', $this->edit_query . $this->ucode . 'spec') ],
-						[ new InlineKeyboard('Задать вопрос по товару', $this->edit_query . $this->ucode . 'callmanager') ],
 					])
 				);
 
@@ -111,7 +107,7 @@
 				B комплекте идут крепёжные пластины, шайбы, гайки
 
 				<b>Торг в зависимости от количества</b>
-				
+
 				📦 ДОСТАВКА: Транспортными компаниями
 				END
 			)

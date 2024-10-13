@@ -46,18 +46,13 @@
 				<b>LifePo4 3.2v</b>
 
 				🔋Аккумулятoры LiitoKala C40
-				_______________________________
-
-				B комплекте идут крепёжные пластины, шайбы, гайки
-				<b>Торг в зависимости от количества</b>
-				Отправка ТК
 				END
 			)
 				. '&parse_mode=html';
 
 			$markup = '&reply_markup=' . json_encode( 
 					new InlineKeyboardMarkup([
-						[ new InlineKeyboard('Особенности', $this->edit_query . $this->ucode . 'feature') ],
+						[ new InlineKeyboard('Подробнее', $this->edit_query . $this->ucode . 'feature') ],
 						[ new InlineKeyboard('Технические Характеристики', $this->edit_query . $this->ucode . 'spec') ],
 						[ new InlineKeyboard('Задать вопрос по товару', $this->edit_query . $this->ucode . 'callmanager') ],
 					])
@@ -76,18 +71,13 @@
 				<b>LifePo4 3.2v</b>
 
 				🔋Аккумулятoры LiitoKala C40
-				_______________________________
-
-				B комплекте идут крепёжные пластины, шайбы, гайки
-				<b>Торг в зависимости от количества</b>
-				Отправка ТК
 				END
 			)
 				. '&parse_mode=html';
 
 			$markup = '&reply_markup=' . json_encode( 
 					new InlineKeyboardMarkup([
-						[ new InlineKeyboard('Особенности', $this->edit_query . $this->ucode . 'feature') ],
+						[ new InlineKeyboard('Подробнее', $this->edit_query . $this->ucode . 'feature') ],
 						[ new InlineKeyboard('Технические Характеристики', $this->edit_query . $this->ucode . 'spec') ],
 						[ new InlineKeyboard('Задать вопрос по товару', $this->edit_query . $this->ucode . 'callmanager') ],
 					])
@@ -116,13 +106,20 @@
 				За счёт высокого постоянного тока, меньше просадки по вольтажу
 
 				Более 4000 циклов заряда 80% DOD
+				_______________________________
+
+				B комплекте идут крепёжные пластины, шайбы, гайки
+
+				<b>Торг в зависимости от количества</b>
+				
+				📦 ДОСТАВКА: Транспортными компаниями
 				END
 			)
 				. '&parse_mode=html';
 
 			$markup = '&reply_markup=' . json_encode(
 					new InlineKeyboardMarkup([
-						[ new InlineKeyboard('Главное', $this->edit_query . $this->ucode . 'general') ],
+						[ new InlineKeyboard('Свернуть', $this->edit_query . $this->ucode . 'general') ],
 						[ new InlineKeyboard('Технические Характеристики', $this->edit_query . $this->ucode . 'spec') ],
 						[ new InlineKeyboard('Задать вопрос по товару', $this->edit_query . $this->ucode . 'callmanager') ],
 					])
@@ -157,8 +154,8 @@
 
 			$markup = '&reply_markup=' . json_encode(
 					new InlineKeyboardMarkup([
-						[ new InlineKeyboard('Главное', $this->edit_query . $this->ucode . 'general') ],
-						[ new InlineKeyboard('Особенности', $this->edit_query . $this->ucode . 'feature') ],
+						[ new InlineKeyboard('Свернуть', $this->edit_query . $this->ucode . 'general') ],
+						[ new InlineKeyboard('Подробнее', $this->edit_query . $this->ucode . 'feature') ],
 						[ new InlineKeyboard('Задать вопрос по товару', $this->edit_query . $this->ucode . 'callmanager') ],
 					])
 				);

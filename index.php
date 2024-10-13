@@ -8,7 +8,6 @@
 <body>
 <?php 
 	include_once 'listener.php';
-	echo("<meta http-equiv='refresh' content='1'>");
 ?>
 </body>
 </html>

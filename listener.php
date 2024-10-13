@@ -14,17 +14,21 @@
 			$update = json_decode(file_get_contents(BASE_URL .'getupdates'));
 			$last_el = count($update->result) - 1;
 			echo $this->last_update_id . '<br>';
+			var_dump($update->result[$last_el]);
 
 			if ($update->ok) {
 				if ($update->result[$last_el] !== null && $update->result[$last_el]->update_id > $this->last_update_id ) {
 					file_get_contents(
 					'https://api.telegram.org/bot' . '7987115494:AAEeup0q0aPauEyRMfk9h8PtuImxHGbSo-Y/'
 					. 'sendmessage?chat_id=' . MY_ID . '&text=new%20update%20id%20' . $update->result[$last_el]->update_id);
+
+					for ($i=$last_el; $update->result[$i]->update_id > $this->last_update_id; $i--) 
+						$Event = new EventBus($update->result[$i]);
 					
 					$this->last_update_id = $update->result[$last_el]->update_id;
 					$this->save_last_update_id();
-					$Event = new EventBus($update->result[$last_el]);
 				}
+				echo("<meta http-equiv='refresh' content='1'>");
 			}
 		}
 

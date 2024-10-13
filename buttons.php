@@ -11,7 +11,7 @@
 
 	class KeyboardMarkup {
 		public $keyboard;
-		public $resize_keyboard = false;
+		public $resize_keyboard = true;
 
 		function __construct (private $matrix) {
 			$this->keyboard = $this->matrix;
@@ -37,12 +37,14 @@
 	}
 
 	class SendMarkup {
+		public $exe;
 		function __construct (private $UserID, private $Markup) {
-			file_get_contents(
-				BASE_URL .  'sendMessage?chat_id=' . $this->UserID . 
-				'&text=keyboard sended' . 
-				'&reply_markup=' . json_encode($this->Markup)
-			);
+			$this->exe = json_decode(
+				file_get_contents(
+					BASE_URL .  'sendMessage?chat_id=' . $this->UserID . 
+					'&text=keyboard sended' . 
+					'&reply_markup=' . json_encode($this->Markup)
+			));
 		}
 	}
 ?>

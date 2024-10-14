@@ -1,70 +1,34 @@
 <?php
 	class LifePo420Ah {
 
-		private $ucode;
-		private $edit_query;
+		use AbstructArticle;
 
-		function __construct (private $Query) {
-			$this->ucode = '1285649';
-			$this->edit_query = 'editarticle';
+		function concrete_init() { $this->ucode = '1285649'; }
 
-			if ($this->Query->message->text === 'Каталог') {
 
-				$this->send($this->Query);
+		function concrete_eventbus($Query, $data) {
+			switch ($data) {
+				case 'feature':
+					$this->feature($this->Query);
+					break;
 
-			} else {
+				case 'spec':
+					$this->spec($this->Query);
+					break;
 
-				$data = $this->Query->callback_query->data;
+				case 'callmanager':
 
-				if (stripos($data, ($this->edit_query . $this->ucode) )) {
-					if (stripos($data, 'general')) {
-						$this->general($this->Query);
-						return;
-					}
-
-					if (stripos($data, 'feature')) {
-						$this->feature($this->Query);
-						return;
-					}
-					
-					if (stripos($data, 'spec')) {
-						$this->spec($this->Query);
-						return;
-					}
-					
-					if (stripos($data, 'callmanager')) {
-
-						return;
-					}
-				}
+					break;
 			}
 		}
 
-		function send($Query) {
-			$text = urlencode(
-				<<< END
-				<b>LifePo4 3.2v</b>
 
-				🔋Аккумулятoры LiitoKala C40
-				END
-			)
-				. '&parse_mode=html';
-
-			$markup = '&reply_markup=' . json_encode( 
-					new InlineKeyboardMarkup([
-						[ new InlineKeyboard('Подробнее', $this->edit_query . $this->ucode . 'feature') ],
-					])
-				);
-
-			file_get_contents(
-				BASE_URL . 'sendphoto?chat_id=' . $this->Query->message->from->id . 
-				'&photo=https://30.img.avito.st/image/1/1.fsUMara40iw6wxApfAdQzXHI0Cqyy1Akes7QLrzD2ia6.L2S2A8JQsuUJ5uNWLBc2lNSbw9PNWiHkaYnbhf-bErg' . 
-				'&caption=' . $text . $markup
-			);
+		function set_photo() {
+			return 'https://30.img.avito.st/image/1/1.fsUMara40iw6wxApfAdQzXHI0Cqyy1Akes7QLrzD2ia6.L2S2A8JQsuUJ5uNWLBc2lNSbw9PNWiHkaYnbhf-bErg';
 		}
 
-		function general($Query) {
-			$text = urlencode(
+		function set_general_text() {
+			return urlencode(
 				<<< END
 				<b>LifePo4 3.2v</b>
 
@@ -72,17 +36,14 @@
 				END
 			)
 				. '&parse_mode=html';
+		}
 
-			$markup = '&reply_markup=' . json_encode( 
+		function set_general_markup() {
+			return '&reply_markup=' . json_encode( 
 					new InlineKeyboardMarkup([
 						[ new InlineKeyboard('Подробнее', $this->edit_query . $this->ucode . 'feature') ],
 					])
 				);
-
-			file_get_contents(
-				BASE_URL . 'editMessagecaption?caption=' . $text . '&chat_id=' . $Query->callback_query->message->chat->id . 
-				'&message_id=' . $Query->callback_query->message->message_id . $markup
-			);
 		}
 
 		function feature($Query) {

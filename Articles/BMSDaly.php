@@ -1,112 +1,68 @@
 <?php
-	class BMSDaly {
-		private $ucode;
-		private $edit_query;
+	include_once 'Article.trait.php';
 
-		function __construct (private $Query) {
-			$this->ucode = '1285651';
-			$this->edit_query = 'editarticle';
+	class BMSDaly implements iArticle {
 
-			if ($this->Query->message->text === 'Каталог') {
+		use AbstructArticle;
 
-				$this->send($this->Query);
+		public $ucode;
 
-			} else {
+		function concrete_init() { $this->ucode = '1285651'; }
 
-				$data = $this->Query->callback_query->data;
+		function set_photo() { return 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi8FQHeWvp_yikhJWqCMIF1glkoy2HWvr28A&s'; }
 
-				if (stripos($data, ($this->edit_query . $this->ucode) )) {
-					if (stripos($data, 'general')) {
-						$this->general($this->Query);
-						return;
-					}
+		function set_general_text() {
+			return urlencode(
+						<<< END
+						<b>⚡️⚡️⚡️⚡️ Плaтa BMS Daly ⚡️⚡️⚡️⚡️</b>
 
-					if (stripos($data, 'more')) {
-						$this->more($this->Query);
-						return;
-					}
+						Плaты ВМS для LiFeРO4 аккумуляторoв 12, 24, 36, 48, 60 В (4S, 8S, 12S, 16S, 20S) 
+						нa тoки oт 20 до 250 A
+						END
+					)
+						. '&parse_mode=html';
+		}
 
-					if (stripos($data, 'stock')) {
-						$this->stock($this->Query);
-						return;
-					}
+		function set_general_markup() {
+			return '&reply_markup=' . json_encode( 
+						new InlineKeyboardMarkup([
+							[ new InlineKeyboard('Подробнее', $this->edit_query . $this->ucode . 'more') ],
+							[ new InlineKeyboard('Наличие и цены', $this->edit_query . $this->ucode . 'stock') ]
+						])
+					);
+		}
 
-					if (stripos($data, 'v12')) {
-						$this->v12($this->Query);
-						return;
-					}
+		function concrete_eventbus($Query, $data) {
+			var_dump($data);
+			switch ($data) {
+				case 'more':
+					$this->more($this->Query);
+					break;
 
-					if (stripos($data, 'v24')) {
-						$this->v24($this->Query);
-						return;
-					}
+				case 'stock':
+					$this->stock($this->Query);
+					break;
 
-					if (stripos($data, 'v36')) {
-						$this->v36($this->Query);
-						return;
-					}
+				case 'v12':
+					$this->v12($this->Query);
+					break;
 
-					if (stripos($data, 'v48')) {
-						$this->v48($this->Query);
-						return;
-					}
+				case 'v24':
+					$this->v24($this->Query);
+					break;
 
-					if (stripos($data, 'v60')) {
-						$this->v60($this->Query);
-						return;
-					}
-				}
+				case 'v36':
+					$this->v36($this->Query);
+					break;
+
+				case 'v48':
+					$this->v48($this->Query);
+					break;
+
+				case 'v60':
+					$this->v60($this->Query);
+					break;
 			}
-		}
-
-		function send($Query) {
-			$text = urlencode(
-				<<< END
-				<b>⚡️⚡️⚡️ Плaтa BMS Daly ⚡️⚡️⚡️</b>
-
-				Плaты ВМS для LiFeРO4 аккумуляторoв 12, 24, 36, 48, 60 В (4S, 8S, 12S, 16S, 20S) 
-				нa тoки oт 20 до 250 A
-				END
-			)
-				. '&parse_mode=html';
-
-			$markup = '&reply_markup=' . json_encode( 
-					new InlineKeyboardMarkup([
-						[ new InlineKeyboard('Подробнее', $this->edit_query . $this->ucode . 'more') ],
-						[ new InlineKeyboard('Наличие и цены', $this->edit_query . $this->ucode . 'stock') ]
-					])
-				);
-
-			file_get_contents(
-				BASE_URL . 'sendphoto?chat_id=' . $this->Query->message->from->id . 
-				'&photo=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi8FQHeWvp_yikhJWqCMIF1glkoy2HWvr28A&s' . 
-				'&caption=' . $text . $markup
-			);
-		}
-
-		function general($Query) {
-			$text = urlencode(
-				<<< END
-				<b>⚡️⚡️⚡️⚡️ Плaтa BMS Daly ⚡️⚡️⚡️⚡️</b>
-
-				Плaты ВМS для LiFeРO4 аккумуляторoв 12, 24, 36, 48, 60 В (4S, 8S, 12S, 16S, 20S) 
-				нa тoки oт 20 до 250 A
-				END
-			)
-				. '&parse_mode=html';
-
-			$markup = '&reply_markup=' . json_encode( 
-					new InlineKeyboardMarkup([
-						[ new InlineKeyboard('Подробнее', $this->edit_query . $this->ucode . 'more') ],
-						[ new InlineKeyboard('Наличие и цены', $this->edit_query . $this->ucode . 'stock') ]
-					])
-				);
-
-			file_get_contents(
-				BASE_URL . 'editMessagecaption?caption=' . $text .
-				'&chat_id=' . $Query->callback_query->message->chat->id . 
-				'&message_id=' . $Query->callback_query->message->message_id . $markup
-			);
 		}
 
 		function more($Query) {

@@ -1,5 +1,5 @@
 <?php
-	class LifePo420Ah {
+	class LifePo420Ah implements iArticle {
 
 		use AbstructArticle;
 

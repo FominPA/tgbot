@@ -33,7 +33,6 @@
 		}
 
 		function concrete_eventbus($Query, $data) {
-			var_dump($data);
 			switch ($data) {
 				case 'more':
 					$this->more($this->Query);
@@ -131,12 +130,6 @@
 						[ new InlineKeyboard('Свернуть', $this->edit_query . $this->ucode . 'general') ]
 					])
 				);
-
-			echo(
-				BASE_URL . 'editMessagecaption?caption=' . $text .
-				'&chat_id=' . $Query->callback_query->message->chat->id .
-				'&message_id=' . $Query->callback_query->message->message_id . $markup
-			);
 
 			file_get_contents(
 				BASE_URL . 'editMessagecaption?caption=' . $text .

@@ -6,6 +6,8 @@
 
 	include_once 'eventbus.php';
 
+	include_once 'UsersDB.php';
+
 	class Listener {
 		private $last_update_id;
 
@@ -22,9 +24,10 @@
 					'https://api.telegram.org/bot' . '7987115494:AAEeup0q0aPauEyRMfk9h8PtuImxHGbSo-Y/'
 					. 'sendmessage?chat_id=' . MY_ID . '&text=new%20update%20id%20' . $update->result[$last_el]->update_id);
 
-					for ($i=$last_el; $update->result[$i]->update_id > $this->last_update_id; $i--) 
-						$Event = new EventBus($update->result[$i]);
-					
+					for ($i=$last_el; $update->result[$i]->update_id > $this->last_update_id; $i--) {
+							new UsersDB($this->SQLUser, $update->result[$i]);
+							new EventBus($update->result[$i]);
+						}
 					$this->last_update_id = $update->result[$last_el]->update_id;
 					$this->save_last_update_id();
 				}

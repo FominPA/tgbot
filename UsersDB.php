@@ -4,7 +4,7 @@
 	class UsersDB {
 
 		function __construct (private $SQL, private $Query) {
-			if (!$this->is_have($this->Query->message->from->id)) $this->add_user($this->Query->message->from->id);
+			if (!$this->is_have($this->Query->message->from->id)) $this->add_user($this->Query->message->from);
 		}
 
 		function create_table() {
@@ -23,10 +23,10 @@
 			} return false;
 		}
 
-		function add_user($UserID) {
-			$sql = 'INSERT INTO `users` (`user_id`) VALUES (:userid);';
+		function add_user($from) {
+			$sql = 'INSERT INTO `users` (`user_id`, `user_login`) VALUES (:userid, :login);';
 			$stmt = $this->SQL->pdo->prepare($sql);
-			$stmt->execute([':userid' => $UserID]);
+			$stmt->execute([':userid' => $from->id, ':login' => $from->username]);
 		}
 	}
 ?>
